@@ -1,0 +1,53 @@
+version: "3.4"
+
+services:
+  rabbitmq:
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "25672:25672"
+      - "15671:15671"
+      - "15672:15672"
+      - "15692:15692"
+
+  database:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: IWannaBeARockstar
+    ports:
+      - "5432:5432"
+  
+  musicstoreproducts:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMqConfiguration__Hostname=rabbitmq
+      - RabbitMqConfiguration__Username=guest
+      - RabbitMqConfiguration__Password=guest
+      - CorsConfiguration__Origins=http://localhost:4200
+      - CorsConfiguration__Methods=GET,POST,PUT,DELETE
+      - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_products;User Id=postgres;Password=IWannaBeARockstar
+    ports:
+      - "3001:80"
+
+  musicstoreorders:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMqConfiguration__Hostname=rabbitmq
+      - RabbitMqConfiguration__Username=guest
+      - RabbitMqConfiguration__Password=guest
+      - CorsConfiguration__Origins=http://localhost:4200
+      - CorsConfiguration__Methods=GET,POST,PUT,DELETE
+      - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_orders;User Id=postgres;Password=IWannaBeARockstar
+    ports:
+      - "3002:80"
+        
+  musicstoreapigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - CorsConfiguration__Origins=http://localhost:4200
+      - CorsConfiguration__Methods=GET,POST,PUT,DELETE
+    ports:
+      - "3000:80"

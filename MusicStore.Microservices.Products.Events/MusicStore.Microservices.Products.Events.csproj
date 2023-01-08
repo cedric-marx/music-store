@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>MusicStore.Microservices.Products.Events</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\MusicStore.Microservices.Orders.Events\MusicStore.Microservices.Orders.Events.csproj" />
+        <ProjectReference Include="..\MusicStore.Microservices.Products.Data\MusicStore.Microservices.Products.Data.csproj" />
+    </ItemGroup>
+
+</Project>

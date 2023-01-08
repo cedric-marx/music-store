@@ -1,0 +1,87 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C2A5DCB1-9F89-46B5-B7D5-31EA204B259F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Api.Gateways.Web", "MusicStore.Api.Gateways.Web\MusicStore.Api.Gateways.Web.csproj", "{4A3A5E85-7FA3-4EEE-AD41-51EC1546CDDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicStore.Microservices", "MusicStore.Microservices", "{661895B0-C604-4C5D-97DA-EBDDAFCA7B20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicStore.Api.Gateways", "MusicStore.Api.Gateways", "{1E8E1A3F-22B5-410E-B4B3-D7F901C5BB82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicStore.Microservices.Products", "MusicStore.Microservices.Products", "{2A05D1DB-9B52-4DF6-B1D2-C52301537AB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Products.Data", "MusicStore.Microservices.Products.Data\MusicStore.Microservices.Products.Data.csproj", "{4A4EBD5E-BC83-421F-BA7A-C47DEA7D8061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Products.Api", "MusicStore.Microservices.Products.Api\MusicStore.Microservices.Products.Api.csproj", "{2B368806-1BAE-489D-B95A-ECCFE100F582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Products.Business", "MusicStore.Microservices.Products.Business\MusicStore.Microservices.Products.Business.csproj", "{A6C6C3BC-1AD5-4B57-8524-7A0600393699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Products.Events", "MusicStore.Microservices.Products.Events\MusicStore.Microservices.Products.Events.csproj", "{187E37C6-08E8-4971-B4DC-427C949A0FA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MusicStore.Microservices.Orders", "MusicStore.Microservices.Orders", "{FD2933C6-2B1B-4E40-B976-3B15B9B35646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Orders.Api", "MusicStore.Microservices.Orders.Api\MusicStore.Microservices.Orders.Api.csproj", "{6609F0FD-56B8-4A49-A699-50AF964385D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Orders.Business", "MusicStore.Microservices.Orders.Business\MusicStore.Microservices.Orders.Business.csproj", "{E5113E2F-AF4A-4489-BA71-4839F3C99B7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Orders.Data", "MusicStore.Microservices.Orders.Data\MusicStore.Microservices.Orders.Data.csproj", "{39B40E7A-55B6-435F-A242-FAA523254E43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicStore.Microservices.Orders.Events", "MusicStore.Microservices.Orders.Events\MusicStore.Microservices.Orders.Events.csproj", "{12203209-F2B1-4571-93F5-0FA7834F194C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A3A5E85-7FA3-4EEE-AD41-51EC1546CDDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A3A5E85-7FA3-4EEE-AD41-51EC1546CDDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A3A5E85-7FA3-4EEE-AD41-51EC1546CDDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A3A5E85-7FA3-4EEE-AD41-51EC1546CDDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A4EBD5E-BC83-421F-BA7A-C47DEA7D8061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A4EBD5E-BC83-421F-BA7A-C47DEA7D8061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A4EBD5E-BC83-421F-BA7A-C47DEA7D8061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A4EBD5E-BC83-421F-BA7A-C47DEA7D8061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B368806-1BAE-489D-B95A-ECCFE100F582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B368806-1BAE-489D-B95A-ECCFE100F582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B368806-1BAE-489D-B95A-ECCFE100F582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B368806-1BAE-489D-B95A-ECCFE100F582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C6C3BC-1AD5-4B57-8524-7A0600393699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C6C3BC-1AD5-4B57-8524-7A0600393699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C6C3BC-1AD5-4B57-8524-7A0600393699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C6C3BC-1AD5-4B57-8524-7A0600393699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187E37C6-08E8-4971-B4DC-427C949A0FA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187E37C6-08E8-4971-B4DC-427C949A0FA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187E37C6-08E8-4971-B4DC-427C949A0FA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187E37C6-08E8-4971-B4DC-427C949A0FA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6609F0FD-56B8-4A49-A699-50AF964385D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6609F0FD-56B8-4A49-A699-50AF964385D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6609F0FD-56B8-4A49-A699-50AF964385D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6609F0FD-56B8-4A49-A699-50AF964385D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5113E2F-AF4A-4489-BA71-4839F3C99B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5113E2F-AF4A-4489-BA71-4839F3C99B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5113E2F-AF4A-4489-BA71-4839F3C99B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5113E2F-AF4A-4489-BA71-4839F3C99B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B40E7A-55B6-435F-A242-FAA523254E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B40E7A-55B6-435F-A242-FAA523254E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B40E7A-55B6-435F-A242-FAA523254E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B40E7A-55B6-435F-A242-FAA523254E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12203209-F2B1-4571-93F5-0FA7834F194C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12203209-F2B1-4571-93F5-0FA7834F194C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12203209-F2B1-4571-93F5-0FA7834F194C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12203209-F2B1-4571-93F5-0FA7834F194C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A3A5E85-7FA3-4EEE-AD41-51EC1546CDDE} = {1E8E1A3F-22B5-410E-B4B3-D7F901C5BB82}
+		{2A05D1DB-9B52-4DF6-B1D2-C52301537AB9} = {661895B0-C604-4C5D-97DA-EBDDAFCA7B20}
+		{4A4EBD5E-BC83-421F-BA7A-C47DEA7D8061} = {2A05D1DB-9B52-4DF6-B1D2-C52301537AB9}
+		{2B368806-1BAE-489D-B95A-ECCFE100F582} = {2A05D1DB-9B52-4DF6-B1D2-C52301537AB9}
+		{A6C6C3BC-1AD5-4B57-8524-7A0600393699} = {2A05D1DB-9B52-4DF6-B1D2-C52301537AB9}
+		{187E37C6-08E8-4971-B4DC-427C949A0FA8} = {2A05D1DB-9B52-4DF6-B1D2-C52301537AB9}
+		{FD2933C6-2B1B-4E40-B976-3B15B9B35646} = {661895B0-C604-4C5D-97DA-EBDDAFCA7B20}
+		{6609F0FD-56B8-4A49-A699-50AF964385D1} = {FD2933C6-2B1B-4E40-B976-3B15B9B35646}
+		{E5113E2F-AF4A-4489-BA71-4839F3C99B7F} = {FD2933C6-2B1B-4E40-B976-3B15B9B35646}
+		{39B40E7A-55B6-435F-A242-FAA523254E43} = {FD2933C6-2B1B-4E40-B976-3B15B9B35646}
+		{12203209-F2B1-4571-93F5-0FA7834F194C} = {FD2933C6-2B1B-4E40-B976-3B15B9B35646}
+	EndGlobalSection
+EndGlobal

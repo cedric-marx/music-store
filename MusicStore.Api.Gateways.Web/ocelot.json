@@ -1,0 +1,64 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/product",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicstoreproducts",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/products",
+      "UpstreamHttpMethod": [
+        "POST",
+        "PUT",
+        "GET"
+      ],
+      "SwaggerKey": "ProductAPI"
+    },
+    {
+      "DownstreamPathTemplate": "/order",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicstoreorders",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/orders",
+      "UpstreamHttpMethod": [
+        "POST",
+        "PUT",
+        "GET"
+      ],
+      "SwaggerKey": "OrderAPI"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "ProductAPI",
+      "Config": [
+        {
+          "Name": "Product API",
+          "Version": "v1",
+          "Url": "http://host.docker.internal:3001/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "OrderAPI",
+      "Config": [
+        {
+          "Name": "Order API",
+          "Version": "v1",
+          "Url": "http://host.docker.internal:3002/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}

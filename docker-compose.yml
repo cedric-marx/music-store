@@ -1,0 +1,23 @@
+version: "3.4"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+  
+  musicstoreproducts:
+    image: ${DOCKER_REGISTRY-}musicstoreproducts
+    build:
+      context: .
+      dockerfile: MusicStore.Microservices.Products.Api/Dockerfile
+
+  musicstoreorders:
+    image: ${DOCKER_REGISTRY-}musicstoreorders
+    build:
+      context: .
+      dockerfile: MusicStore.Microservices.Orders.Api/Dockerfile
+  
+  musicstoreapigateway:
+    image: ${DOCKER_REGISTRY-}musicstoreapigateway
+    build:
+      context: .
+      dockerfile: MusicStore.Api.Gateways.Web/Dockerfile

@@ -11,7 +11,7 @@ public class OrderDbContextFactory : IDesignTimeDbContextFactory<OrderDbContext>
 
         //NOTE: This is only used for development purpose else you can't run a migration.
         optionsBuilder.UseNpgsql(
-            "Host=localhost;Port=5432;Database=musicstore_orders;User Id=postgres;Password=IWannaBeARockstar");
+            "Host=localhost;Port=5432;Database=musicstore_orders;User Id=postgres;Password=ILikeMyPassword1#@");
 
         return new OrderDbContext(optionsBuilder.Options);
     }

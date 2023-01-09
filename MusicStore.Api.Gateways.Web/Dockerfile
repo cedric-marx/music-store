@@ -6,8 +6,8 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
 # Copy the main source project files
-COPY Source/*/*.csproj ./
-RUN for file in $(ls *.csproj); do mkdir -p Source/${file%.*}/ && mv $file Source/${file%.*}/; done
+COPY ./*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p ./${file%.*}/ && mv $file ./${file%.*}/; done
 RUN dotnet restore "MusicStore.Api.Gateways.Web/MusicStore.Api.Gateways.Web.csproj" --configfile nuget.config
 COPY . .
 WORKDIR "/src/MusicStore.Api.Gateways.Web"

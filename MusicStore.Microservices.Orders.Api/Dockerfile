@@ -6,8 +6,8 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 
 # Copy the main source project files
-COPY Source/*/*.csproj ./
-RUN for file in $(ls *.csproj); do mkdir -p Source/${file%.*}/ && mv $file Source/${file%.*}/; done
+COPY ./*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p ./${file%.*}/ && mv $file ./${file%.*}/; done
 RUN dotnet restore "MusicStore.Microservices.Orders.Api/MusicStore.Microservices.Orders.Api.csproj" --configfile nuget.config
 COPY . .
 WORKDIR "/src/MusicStore.Microservices.Orders.Api"

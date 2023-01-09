@@ -1,12 +1,14 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["MusicStore.Microservices.Orders.Api.csproj", "MusicStore.Microservices.Orders.Api/"]
-RUN dotnet restore "MusicStore.Microservices.Orders.Api/MusicStore.Microservices.Orders.Api.csproj"
+
+# Copy the main source project files
+COPY Source/*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p Source/${file%.*}/ && mv $file Source/${file%.*}/; done
+RUN dotnet restore "MusicStore.Microservices.Orders.Api/MusicStore.Microservices.Orders.Api.csproj" --configfile nuget.config
 COPY . .
 WORKDIR "/src/MusicStore.Microservices.Orders.Api"
 RUN dotnet build "MusicStore.Microservices.Orders.Api.csproj" -c Release -o /app/build

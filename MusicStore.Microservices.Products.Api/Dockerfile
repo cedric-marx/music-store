@@ -5,7 +5,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["MusicStore.Microservices.Products.Api/MusicStore.Microservices.Products.Api.csproj", "MusicStore.Microservices.Products.Api/"]
+COPY ["MusicStore.Microservices.Products.Api.csproj", "MusicStore.Microservices.Products.Api/"]
 RUN dotnet restore "MusicStore.Microservices.Products.Api/MusicStore.Microservices.Products.Api.csproj"
 COPY . .
 WORKDIR "/src/MusicStore.Microservices.Products.Api"

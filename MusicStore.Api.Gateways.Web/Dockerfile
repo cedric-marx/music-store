@@ -9,10 +9,10 @@ COPY ["MusicStore.Api.Gateways.Web.csproj", "MusicStore.Api.Gateways.Web/"]
 RUN dotnet restore "MusicStore.Api.Gateways.Web.csproj"
 COPY . .
 WORKDIR "/src/MusicStore.Api.Gateways.Web"
-RUN dotnet build "MusicStore.Api.Gateways.Web.csproj" -c Release -o /app/build
+RUN dotnet build "MusicStore.Api.Gateways.Web/MusicStore.Api.Gateways.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MusicStore.Api.Gateways.Web.csproj" -c Release -o /app/publish
+RUN dotnet publish "MusicStore.Api.Gateways.Web/MusicStore.Api.Gateways.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app

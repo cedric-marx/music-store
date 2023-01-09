@@ -8,7 +8,7 @@ WORKDIR /src
 # Copy the main source project files
 COPY ./*/*.csproj ./
 RUN for file in $(ls *.csproj); do mkdir -p ./${file%.*}/ && mv $file ./${file%.*}/; done
-RUN dotnet restore "MusicStore.Microservices.Products.Api/MusicStore.Microservices.Products.Api.csproj" --configfile nuget.config
+RUN dotnet restore "MusicStore.Microservices.Products.Api/MusicStore.Microservices.Products.Api.csproj"
 COPY . .
 WORKDIR "/src/MusicStore.Microservices.Products.Api"
 RUN dotnet build "MusicStore.Microservices.Products.Api.csproj" -c Release -o /app/build

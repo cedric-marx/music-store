@@ -18,14 +18,12 @@ public sealed class Repository<TEntity, TContext> : IRepository<TEntity>
         _dbSet = context.Set<TEntity>();
         _logger = logger;
     }
-
-    private IQueryable<TEntity> Queryable => _dbSet.AsNoTracking();
-
+    
     public async Task<bool> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         try
         {
-            _dbSet.Add(entity);
+            await _dbSet.AddAsync(entity, cancellationToken);
 
             var isSuccess = await _context.SaveChangesAsync(cancellationToken) > 0;
 
@@ -44,7 +42,7 @@ public sealed class Repository<TEntity, TContext> : IRepository<TEntity>
     {
         try
         {
-            return await Queryable.ToListAsync(cancellationToken);
+            return await _dbSet.ToListAsync(cancellationToken);
         }
         catch (Exception exception)
         {

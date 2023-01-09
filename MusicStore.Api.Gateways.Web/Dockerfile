@@ -5,8 +5,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["MusicStore.Api.Gateways.Web/MusicStore.Api.Gateways.Web.csproj", "MusicStore.Api.Gateways.Web/"]
-RUN dotnet restore "MusicStore.Api.Gateways.Web/MusicStore.Api.Gateways.Web.csproj"
+COPY ["MusicStore.Api.Gateways.Web.csproj", "MusicStore.Api.Gateways.Web/"]
+RUN dotnet restore "MusicStore.Api.Gateways.Web.csproj"
 COPY . .
 WORKDIR "/src/MusicStore.Api.Gateways.Web"
 RUN dotnet build "MusicStore.Api.Gateways.Web.csproj" -c Release -o /app/build

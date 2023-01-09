@@ -1,0 +1,39 @@
+resources:
+  - repo: self
+variables:
+  dockerRegistryServiceConnection: 'c61a1d72-60b2-4cac-be18-b2c4d6bd4064'
+  imageRepository: 'musicstore-orders-microservice'
+  containerRegistry: 'acr20rsms100prod.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/MusicStore.Microservices.Orders.Api/Dockerfile'
+  tag: '$(Build.BuildId)'
+  vmImageName: 'ubuntu-latest'
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    include:
+      - MusicStore.Orders.Api
+      - MusicStore.Orders.Business
+      - MusicStore.Orders.Data
+      - MusicStore.Orders.Events
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)

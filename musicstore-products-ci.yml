@@ -1,7 +1,7 @@
 resources:
   - repo: self
 variables:
-  dockerRegistryServiceConnection: 'c61a1d72-60b2-4cac-be18-b2c4d6bd4064'
+  dockerRegistryServiceConnection: 'ACR20rsms100prod-1'
   imageRepository: 'musicstore-products-microservice'
   containerRegistry: 'acr20rsms100prod.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/MusicStore.Microservices.Products.Api/Dockerfile'

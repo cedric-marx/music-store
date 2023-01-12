@@ -14,7 +14,7 @@ services:
   database:
     image: postgres
     environment:
-      POSTGRES_PASSWORD: IWannaBeARockstar
+      POSTGRES_PASSWORD: ILikeMyPassword1#@
     ports:
       - "5432:5432"
   
@@ -27,7 +27,7 @@ services:
       - RabbitMqConfiguration__Password=guest
       - CorsConfiguration__Origins=http://localhost:4200
       - CorsConfiguration__Methods=GET,POST,PUT,DELETE
-      - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_products;User Id=postgres;Password=IWannaBeARockstar
+      - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_products;User Id=postgres;Password=ILikeMyPassword1#@
     ports:
       - "3001:80"
 
@@ -40,7 +40,7 @@ services:
       - RabbitMqConfiguration__Password=guest
       - CorsConfiguration__Origins=http://localhost:4200
       - CorsConfiguration__Methods=GET,POST,PUT,DELETE
-      - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_orders;User Id=postgres;Password=IWannaBeARockstar
+      - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_orders;User Id=postgres;Password=ILikeMyPassword1#@
     ports:
       - "3002:80"
         

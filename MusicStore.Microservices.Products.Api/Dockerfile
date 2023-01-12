@@ -1,11 +1,13 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
 EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["MusicStore.Microservices.Products.Api/MusicStore.Microservices.Products.Api.csproj", "MusicStore.Microservices.Products.Api/"]
+
+# Copy the main source project files
+COPY ./*/*.csproj ./
+RUN for file in $(ls *.csproj); do mkdir -p ./${file%.*}/ && mv $file ./${file%.*}/; done
 RUN dotnet restore "MusicStore.Microservices.Products.Api/MusicStore.Microservices.Products.Api.csproj"
 COPY . .
 WORKDIR "/src/MusicStore.Microservices.Products.Api"

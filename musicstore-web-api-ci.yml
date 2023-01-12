@@ -1,0 +1,49 @@
+resources:
+  - repo: self
+variables:
+  - name: 'dockerRegistryServiceConnection'
+    value: 'ACR20rock100prod'
+  - name: 'imageRepository'
+    value: 'musicstore-products-microservice'
+  - name: 'containerRegistry'
+    value: 'acr20rock100prod.azurecr.io'
+  - name: 'dockerfilePath'
+    value: '$(Build.SourcesDirectory)/MusicStore.Api.Gateways.Web/Dockerfile'
+  - name: 'buildId'
+    value: '$(Build.BuildId)'
+  - name: 'vmImageName'
+    value: 'ubuntu-latest'
+  - name: 'tag'
+    ${{ if eq(variables['build.SourceBranchName'], 'main') }}:
+      value: 'prod'
+    ${{ if eq(variables['build.SourceBranchName'], 'develop') }}:
+      value: 'dev'
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+  paths:
+    include:
+      - MusicStore.Api.Gateways.Web
+
+stages:
+  - stage: Build
+    displayName: Build and push stage
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - task: Docker@2
+            displayName: Build and push an image to container registry
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: $(dockerRegistryServiceConnection)
+              buildContext: '.'
+              tags: |
+                $(buildId)
+                latest-$(tag)

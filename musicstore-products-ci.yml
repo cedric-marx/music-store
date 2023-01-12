@@ -1,12 +1,23 @@
 resources:
   - repo: self
 variables:
-  dockerRegistryServiceConnection: 'ACR20rsms100prod-1'
-  imageRepository: 'musicstore-products-microservice'
-  containerRegistry: 'acr20rsms100prod.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/MusicStore.Microservices.Products.Api/Dockerfile'
-  tag: '$(Build.BuildId)'
-  vmImageName: 'ubuntu-latest'
+  - name: 'dockerRegistryServiceConnection'
+    value: 'ACR20rock100prod'
+  - name: 'imageRepository'
+    value: 'musicstore-products-microservice'
+  - name: 'containerRegistry'
+    value: 'acr20rock100prod.azurecr.io'
+  - name: 'dockerfilePath'
+    value: '$(Build.SourcesDirectory)/MusicStore.Microservices.Products.Api/Dockerfile'
+  - name: 'buildId'
+    value: '$(Build.BuildId)'
+  - name: 'vmImageName'
+    value: 'ubuntu-latest'
+  - name: 'tag'
+    ${{ if eq(variables['build.SourceBranchName'], 'main') }}:
+      value: 'prod'
+    ${{ if eq(variables['build.SourceBranchName'], 'develop') }}:
+      value: 'dev'
 trigger:
   branches:
     include:
@@ -20,21 +31,22 @@ trigger:
       - MusicStore.Products.Events
 
 stages:
-- stage: Build
-  displayName: Build and push stage
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        buildContext: '.'
-        tags: |
-          $(tag)
+  - stage: Build
+    displayName: Build and push stage
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+          - task: Docker@2
+            displayName: Build and push an image to container registry
+            inputs:
+              command: buildAndPush
+              repository: $(imageRepository)
+              dockerfile: $(dockerfilePath)
+              containerRegistry: $(dockerRegistryServiceConnection)
+              buildContext: '.'
+              tags: |
+                $(buildId)
+                latest-$(tag)

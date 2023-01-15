@@ -12,7 +12,6 @@ services:
       - "15692:15692"
 
   database:
-    image: postgres
     environment:
       POSTGRES_PASSWORD: ILikeMyPassword1#@
     ports:
@@ -43,7 +42,7 @@ services:
       - DatabaseConfiguration__ConnectionString=Server=database;Port=5432;Database=musicstore_orders;User Id=postgres;Password=ILikeMyPassword1#@
     ports:
       - "3002:80"
-        
+  
   musicstoreapigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

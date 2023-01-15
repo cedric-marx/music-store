@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MusicStore.Microservices.Products.Data.Migrations
 {
-    [DbContext(typeof(ProductDbContext))]
+    [DbContext(typeof(ProductsDbContext))]
     [Migration("20230107214611_InitialMigration")]
     partial class InitialMigration
     {

@@ -18,6 +18,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Polly;
 using Polly.Retry;
+using Policy = Polly.Policy;
 
 namespace MusicStore.Microservices.Orders.Api;
 
@@ -43,13 +44,13 @@ internal static class StartupExtensions
 
     public static void ConfigureServices(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IOrderService, OrderService>();
+        serviceCollection.AddScoped<IOrdersService, OrdersService>();
         serviceCollection.AddValidatorsFromAssemblyContaining<OrderRequestModelValidator>();
     }
 
     public static void ConfigureRepositories(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IRepository<Order>, Repository<Order, OrderDbContext>>();
+        serviceCollection.AddScoped<IRepository<Order>, Repository<Order, OrdersDbContext>>();
     }
 
     public static void ConfigureMassTransit(this IServiceCollection serviceCollection,
@@ -79,7 +80,7 @@ internal static class StartupExtensions
     {
         var databaseConfiguration =
             configuration.GetSection(nameof(DatabaseConfiguration)).Get<DatabaseConfiguration>();
-        serviceCollection.AddDbContext<OrderDbContext>(
+        serviceCollection.AddDbContext<OrdersDbContext>(
             options => options.UseNpgsql(databaseConfiguration?.ConnectionString), ServiceLifetime.Transient);
     }
 

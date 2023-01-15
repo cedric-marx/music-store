@@ -26,12 +26,7 @@ public sealed class Repository<TEntity, TContext> : IRepository<TEntity>
         try
         {
             _dbSet.Add(entity);
-
-            var isSuccess = await _context.SaveChangesAsync(cancellationToken) > 0;
-
-            _context.Entry(entity).State = EntityState.Detached;
-
-            return isSuccess;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
         catch (Exception exception)
         {
@@ -74,11 +69,6 @@ public sealed class Repository<TEntity, TContext> : IRepository<TEntity>
     public async Task<bool> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         _dbSet.Update(entity);
-
-        var success = await _context.SaveChangesAsync(cancellationToken) > 0;
-
-        _context.Entry(entity).State = EntityState.Detached;
-
-        return success;
+        return await _context.SaveChangesAsync(cancellationToken) > 0;
     }
 }

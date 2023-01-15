@@ -27,7 +27,7 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        app.MigrateAndSeedDatabase<OrderDbContext>(_ => { });
+        app.MigrateAndSeedDatabase<OrdersDbContext>(_ => { });
 
         if (env.IsDevelopment())
         {

@@ -7,27 +7,24 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
-using MusicStore.Microservices.Orders.Events.Events;
 using MusicStore.Microservices.Products.Api.Configurations;
+using MusicStore.Microservices.Products.Api.Handlers;
 using MusicStore.Microservices.Products.Api.RequestModels;
 using MusicStore.Microservices.Products.Business.Services;
 using MusicStore.Microservices.Products.Business.Services.Implementation;
 using MusicStore.Microservices.Products.Data;
 using MusicStore.Microservices.Products.Data.Models;
 using MusicStore.Microservices.Products.Data.Repositories;
-using MusicStore.Microservices.Products.Events.Handlers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Polly;
 using Polly.Retry;
+using Policy = Polly.Policy;
 
 namespace MusicStore.Microservices.Products.Api;
 
 internal static class StartupExtensions
 {
-    private static bool ExceptionsHandledByOrchestrator =>
-        false; //Startup.Configuration.GetValue<string>("OrchestratorType")?.ToUpper() == "KUBERNETES";
-
     public static void ConfigureCors(this IServiceCollection serviceCollection, IConfiguration configuration)
     {
         var corsConfiguration = configuration.GetSection(nameof(CorsConfiguration)).Get<CorsConfiguration>();
@@ -45,13 +42,13 @@ internal static class StartupExtensions
 
     public static void ConfigureServices(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IProductService, ProductService>();
+        serviceCollection.AddScoped<IProductsService, ProductsService>();
         serviceCollection.AddValidatorsFromAssemblyContaining<ProductRequestModelValidator>();
     }
 
     public static void ConfigureRepositories(this IServiceCollection serviceCollection)
     {
-        serviceCollection.AddScoped<IRepository<Product>, Repository<Product, ProductDbContext>>();
+        serviceCollection.AddScoped<IRepository<Product>, Repository<Product, ProductsDbContext>>();
     }
 
     public static void ConfigureMassTransit(this IServiceCollection serviceCollection,
@@ -71,7 +68,7 @@ internal static class StartupExtensions
                 });
                 cfg.ReceiveEndpoint("musicstore-products-microservice", e => { e.ConfigureConsumers(context); });
             });
-            
+
             x.AddConsumersFromNamespaceContaining(typeof(OrderCreatedEventHandler));
         });
     }
@@ -81,7 +78,7 @@ internal static class StartupExtensions
     {
         var databaseConfiguration =
             configuration.GetSection(nameof(DatabaseConfiguration)).Get<DatabaseConfiguration>();
-        serviceCollection.AddDbContext<ProductDbContext>(
+        serviceCollection.AddDbContext<ProductsDbContext>(
             options => options.UseNpgsql(databaseConfiguration?.ConnectionString), ServiceLifetime.Transient);
     }
 
@@ -121,7 +118,7 @@ internal static class StartupExtensions
                 });
     }
 
-    public static void MigrateDatabase<TContext>(this IApplicationBuilder app)
+    private static void MigrateDatabase<TContext>(this IApplicationBuilder app)
         where TContext : DbContext
     {
         using var scope = app.ApplicationServices.CreateScope();
@@ -129,7 +126,7 @@ internal static class StartupExtensions
         var dataContext = scope.ServiceProvider.GetRequiredService<TContext>();
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<TContext>>();
 
-        void migrateDatabaseDelegate()
+        void MigrateDatabaseDelegate()
         {
             logger.LogInformation("Trying to migrate database...");
 
@@ -138,16 +135,8 @@ internal static class StartupExtensions
             logger.LogInformation("Database migration was successful.");
         }
 
-        if (ExceptionsHandledByOrchestrator)
-        {
-            // Orchestrator will handle exceptions.
-            migrateDatabaseDelegate();
-        }
-        else
-        {
-            var retryPolicy = CreateRetryPolicy(10, 2, logger);
-            retryPolicy.Execute(migrateDatabaseDelegate);
-        }
+        var retryPolicy = CreateRetryPolicy(10, 2, logger);
+        retryPolicy.Execute(MigrateDatabaseDelegate);
     }
 
 
@@ -173,7 +162,7 @@ internal static class StartupExtensions
         MigrateDatabase<TContext>(app);
         SeedDatabase(app, seedDelegate);
     }
-    
+
     public static void ConfigureSwagger(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo

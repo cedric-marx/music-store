@@ -2,11 +2,11 @@ resources:
   - repo: self
 variables:
   - name: 'dockerRegistryServiceConnection'
-    value: 'ACR20rock100prod'
+    value: 'ACR20rsms100prod'
   - name: 'imageRepository'
     value: 'musicstore-products-microservice'
   - name: 'containerRegistry'
-    value: 'acr20rock100prod.azurecr.io'
+    value: 'acr20rsms100prod.azurecr.io'
   - name: 'dockerfilePath'
     value: '$(Build.SourcesDirectory)/MusicStore.Microservices.Products.Api/Dockerfile'
   - name: 'buildId'
@@ -25,10 +25,10 @@ trigger:
       - develop
   paths:
     include:
-      - MusicStore.Products.Api
-      - MusicStore.Products.Business
-      - MusicStore.Products.Data
-      - MusicStore.Products.Events
+      - MusicStore.Microservices.Products.Api
+      - MusicStore.Microservices.Products.Business
+      - MusicStore.Microservices.Products.Data
+      - MusicStore.Microservices.Products.Events
 
 stages:
   - stage: Build

@@ -18,18 +18,13 @@ public sealed class Repository<TEntity, TContext> : IRepository<TEntity>
         _dbSet = context.Set<TEntity>();
         _logger = logger;
     }
-    
+
     public async Task<bool> CreateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
         try
         {
             await _dbSet.AddAsync(entity, cancellationToken);
-
-            var isSuccess = await _context.SaveChangesAsync(cancellationToken) > 0;
-
-            _context.Entry(entity).State = EntityState.Detached;
-
-            return isSuccess;
+            return await _context.SaveChangesAsync(cancellationToken) > 0;
         }
         catch (Exception exception)
         {

@@ -7,13 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MusicStore.Microservices.Orders.Data\MusicStore.Microservices.Orders.Data.csproj" />
-        <ProjectReference Include="..\MusicStore.Microservices.Orders.Events\MusicStore.Microservices.Orders.Events.csproj" />
+        <ProjectReference Include="..\MusicStore.Microservices.Orders.Data\MusicStore.Microservices.Orders.Data.csproj"/>
+        <ProjectReference Include="..\MusicStore.Microservices.Orders.Events\MusicStore.Microservices.Orders.Events.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="12.0.0" />
-        <PackageReference Include="MassTransit.Abstractions" Version="8.0.10" />
+        <PackageReference Include="AutoMapper" Version="12.0.0"/>
+        <PackageReference Include="MassTransit.Abstractions" Version="8.0.10"/>
     </ItemGroup>
 
 </Project>

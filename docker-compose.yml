@@ -2,8 +2,11 @@ version: "3.4"
 
 services:
   rabbitmq:
-    image: rabbitmq:3-management
-  
+    image: rabbitmq:latest
+
+  database:
+    image: postgres:latest
+
   musicstoreproducts:
     image: ${DOCKER_REGISTRY-}musicstoreproducts
     build:

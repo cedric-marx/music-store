@@ -15,7 +15,6 @@ public class Startup
     public void ConfigureServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddHealthChecks();
-        serviceCollection.ConfigureCors(Configuration);
         serviceCollection.AddAutoMapper(Assembly.GetExecutingAssembly());
         serviceCollection.ConfigureDatabaseConfiguration(Configuration);
         serviceCollection.ConfigureServices();
@@ -37,7 +36,6 @@ public class Startup
 
         app.UseDefaultFiles();
         app.UseStaticFiles();
-        app.UseCors();
         app.UseRouting();
         app.UseEndpoints(endpoints =>
         {

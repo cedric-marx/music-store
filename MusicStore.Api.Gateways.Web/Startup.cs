@@ -20,9 +20,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddHealthChecks();
-        serviceCollection.ConfigureCors(Configuration);
         serviceCollection.AddControllers();
         serviceCollection.AddOcelot().AddKubernetes();
+        serviceCollection.ConfigureCors(Configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

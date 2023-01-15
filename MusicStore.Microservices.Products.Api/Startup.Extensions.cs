@@ -25,21 +25,6 @@ namespace MusicStore.Microservices.Products.Api;
 
 internal static class StartupExtensions
 {
-    public static void ConfigureCors(this IServiceCollection serviceCollection, IConfiguration configuration)
-    {
-        var corsConfiguration = configuration.GetSection(nameof(CorsConfiguration)).Get<CorsConfiguration>();
-        serviceCollection.AddCors(options =>
-        {
-            options.AddDefaultPolicy(builder =>
-            {
-                builder.WithOrigins(corsConfiguration?.Origins.Split(",") ?? Array.Empty<string>());
-                builder.AllowAnyHeader();
-                builder.AllowAnyMethod();
-                builder.SetIsOriginAllowedToAllowWildcardSubdomains();
-            });
-        });
-    }
-
     public static void ConfigureServices(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddScoped<IProductsService, ProductsService>();

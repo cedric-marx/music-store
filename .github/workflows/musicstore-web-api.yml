@@ -3,7 +3,8 @@ name: MusicStore Web API CI
 on:
   push:
     branches: [ "master" ]
-    paths: 'MusicStore.Api.Gateways.Web'
+    paths: 
+      - 'MusicStore.Api.Gateways.Web'
   pull_request:
     branches: [ "master" ]
 

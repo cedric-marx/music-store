@@ -1,0 +1,32 @@
+name: MusicStore Frontend
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'Frontend'
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-and-push-docker-image:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Azure Container Registry
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS }}
+
+      - name: 'Build and push image'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/music-store-frontend:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/music-store-frontend:${{ github.sha }}

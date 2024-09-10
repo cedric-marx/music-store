@@ -1,0 +1,21 @@
+app:
+  name: musicstore-products
+  group: csharp
+  probes:
+    enabled: false
+  container:
+    image: acr20rsms100prod.azurecr.io/musicstore-products-microservice:latest-prod
+    port: 80
+    env:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:80
+      - key: RabbitMqConfiguration__Hostname
+        value: rabbitmq.default.svc.cluster.local
+      - key: RabbitMqConfiguration__Username
+        value: user
+      - key: RabbitMqConfiguration__Password
+        value: jJKlwXuRG0AFguTj%
+      - key: DatabaseConfiguration__ConnectionString
+        value: Server=20rsms100-prod-postgres.postgres.database.azure.com;Database=DB20rsms100-prod-products;Port=5432;User Id=postgres@20rsms100-prod-postgres;Password=IWannaBeARockstar123@!?;

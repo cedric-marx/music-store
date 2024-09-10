@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Order {\n  constructor(productId) {\n    this.productId = productId;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

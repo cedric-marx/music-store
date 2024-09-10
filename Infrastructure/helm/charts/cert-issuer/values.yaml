@@ -1,0 +1,22 @@
+certIssuer:
+  name: letsencrypt-staging-issuer
+  # You must replace this email address with your own.
+  # Let's Encrypt will use this to contact you about expiring
+  # certificates, and issues related to your account.
+  email: marxcedric@gmail.com
+
+  # ACME server URL for Let’s Encrypt’s staging environment.
+  # The staging environment will not issue trusted certificates but is
+  # used to ensure that the verification process is working properly
+  # before moving to production
+  # Staging, to prevent let's encrypt's rate limits (50 per week).
+  server: https://acme-staging-v02.api.letsencrypt.org/directory
+
+  # Production
+  # server: https://acme-v02.api.letsencrypt.org/directory
+
+  # Secret resource used to store the account's private key.
+  privateKeyName: example-issuer-account-key
+  # Ingress needed for the HTTP-01 challenge provider, you prove ownership
+  # of a domain by ensuring that a particular file is present at the domain.
+  ingressClass: azure/application-gateway

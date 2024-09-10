@@ -1,0 +1,31 @@
+<section class="py-5">
+    <h1 class="fw-bolder display-5 text-center">PRODUCTEN</h1>
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let product of products; let i = index">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top pt-3" src="{{ product.imageUrl }}" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder text-black">{{ product.name }}</h5>
+                            <!-- Product price-->
+                            <span class="text-black">{{ product.price | currency: '€' }}</span>
+                            <br/>
+                            <span class="rockstar-yellow">Nog {{ product.stock }} beschikbaar</span>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="d-flex card-footer p-4 pt-0 border-top-0 bg-transparent justify-content-center">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button" (click)="orderProduct(product!)">
+                            <i class="bi-cart-fill me-1"></i>
+                            Bestellen
+                        </button>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

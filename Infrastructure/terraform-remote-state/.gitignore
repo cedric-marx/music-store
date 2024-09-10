@@ -1,0 +1,3 @@
+# We're explicitly versioning the tfstate of the remote state configuration, because we can't store it in a remote
+# state. It doesn't contain any sensitive attributes anyway.
+!*.tfstate

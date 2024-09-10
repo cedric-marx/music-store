@@ -1,0 +1,55 @@
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+
+releases:
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: 1.6.1
+    atomic: true
+    cleanupOnFail: true
+    set:
+      - name: installCRDs
+        value: true
+
+  - name: cert-issuer
+    namespace: cert-manager
+    chart: ./charts/cert-issuer
+    values:
+      - ./values/cert-issuer.yaml
+
+  - name: ingress-controller
+    chart: ./charts/ingress
+    values:
+      - ./values/ingress.yaml
+
+  - name: rabbitmq
+    chart: bitnami/rabbitmq
+    values:
+      - ./values/rabbitmq.yaml
+      
+  - name: musicstore-webapi
+    chart: ./charts/app
+    values:
+      - ./values/musicstore-webapi.yaml
+
+  - name: musicstore-orders
+    chart: ./charts/app
+    values:
+      - ./values/musicstore-orders.yaml
+  
+  - name: musicstore-products
+    chart: ./charts/app
+    values:
+      - ./values/musicstore-products.yaml
+
+  - name: musicstore-web
+    chart: ./charts/app
+    values:
+      - ./values/musicstore-web.yaml
+
+  - name: permissive-binding
+    chart: k8s-as-helm/clusterrolebinding
+    values:
+      - ./values/rbac.yaml

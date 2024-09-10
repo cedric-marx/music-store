@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: true,\n  apiBaseUrl: 'https://rsms-prod.westeurope.cloudapp.azure.com/api'\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

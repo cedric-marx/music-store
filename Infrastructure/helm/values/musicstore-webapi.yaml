@@ -1,0 +1,15 @@
+app:
+  name: musicstore-webapi
+  group: csharp
+  probes:
+    enabled: true
+  container:
+    image: acr20rsms100prod.azurecr.io/musicstore-web-api:latest-prod
+    port: 80
+    env:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: CorsConfiguration__Origins
+        value: https://rsms-prod.westeurope.cloudapp.azure.com/
+      - key: CorsConfiguration__Methods
+        value: GET,POST,PUT,DELETE

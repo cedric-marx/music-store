@@ -1,0 +1,17 @@
+kind: ClusterRoleBinding
+metadata:
+  name: permissive-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  name: cluster-admin
+  kind: ClusterRole
+subjects:
+  - kind: User
+    name: admin
+    apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: kubelet
+    apiGroup: rbac.authorization.k8s.io
+  - kind: Group
+    name: system:serviceaccounts
+    apiGroup: rbac.authorization.k8s.io

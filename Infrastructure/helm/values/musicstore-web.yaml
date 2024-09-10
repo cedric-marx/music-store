@@ -1,0 +1,8 @@
+app:
+  name: musicstore-web
+  group: frontend
+  probes:
+    enabled: false
+  container:
+    image: acr20rsms100prod.azurecr.io/musicstore-web:latest-prod
+    port: 80

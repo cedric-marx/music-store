@@ -1,0 +1,6 @@
+certIssuer:
+  name: letsencrypt-issuer
+  email: marxcedric@gmail.com
+  server: https://acme-v02.api.letsencrypt.org/directory
+  privateKeyName: letsencrypt-issuer-key
+  ingressClass: azure/application-gateway
